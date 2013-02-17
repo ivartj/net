@@ -1,0 +1,10 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: ivartjnet
+Description: Wrapper library for network programming.
+Version: @VERSION@
+Libs: -L${libdir}/ivartj -lnet
+Cflags: -I${includedir}
