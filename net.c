@@ -1,8 +1,23 @@
+#include "config.h"
 #include "net.h"
+
+#ifndef WIN32
+
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netdb.h>
 #include <string.h>
+
+#else
+
+#define WIN32_LEAN_AND_MEAN
+#define WINVER 0x501
+
+#include <winsock2.h>
+#include <ws2tcpip.h>
+#include <windows.h>
+
+#endif
 
 static int tcplistenfamily(const char *port, int ai_family);
 
@@ -13,6 +28,12 @@ int tcplistenfamily(const char *port, int ai_family)
 	struct addrinfo hints;
 	struct addrinfo *res = NULL;
 	struct addrinfo *iter = NULL;
+
+	#ifdef WIN32
+	err = ws_initialize();
+	if(err)
+		return -1;
+	#endif
 
 	memset(&hints, 0, sizeof(hints));
 	hints.ai_flags = AI_PASSIVE;
@@ -75,6 +96,12 @@ int tcpdial(const char *node, const char *port)
 	struct addrinfo hints;
 	struct addrinfo *res = NULL;
 	struct addrinfo *iter = NULL;
+
+	#ifdef WIN32
+	err = ws_initialize();
+	if(err)
+		return -1;
+	#endif
 
 	memset(&hints, 0, sizeof(hints));
 	hints.ai_family = AF_UNSPEC;
