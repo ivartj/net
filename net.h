@@ -8,7 +8,11 @@
 #else
 
 #define WIN32_LEAN_AND_MEAN
+
+#ifndef WINVER
 #define WINVER 0x501
+#endif
+
 #include <windows.h>
 #include <ws2tcpip.h>
 #include <winsock2.h>
