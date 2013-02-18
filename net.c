@@ -30,7 +30,7 @@ int tcplistenfamily(const char *port, int ai_family)
 	struct addrinfo *iter = NULL;
 
 	#ifdef WIN32
-	err = ws_initialize();
+	err = net_win32_winsock_initialize();
 	if(err)
 		return -1;
 	#endif
@@ -98,7 +98,7 @@ int tcpdial(const char *node, const char *port)
 	struct addrinfo *iter = NULL;
 
 	#ifdef WIN32
-	err = ws_initialize();
+	err = net_win32_winsock_initialize();
 	if(err)
 		return -1;
 	#endif

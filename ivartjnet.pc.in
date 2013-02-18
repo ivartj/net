@@ -6,5 +6,5 @@ includedir=@includedir@
 Name: ivartjnet
 Description: Wrapper library for network programming.
 Version: @VERSION@
-Libs: -L${libdir}/ivartj -lnet @LIBS@
+Libs: -L${libdir} -livartjnet @LIBS@
 Cflags: -I${includedir}

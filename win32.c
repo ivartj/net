@@ -4,18 +4,17 @@
 #include <ws2tcpip.h>
 #include <stdlib.h>
 
-static int initialize(void);
 static void cleanup(void);
 
 static int initialized = 0;
 
-int ws_initialize(void)
+int net_win32_winsock_initialize(void)
 {
 	int err;
 	WSADATA wsa;
 
 	if(initialized)
-		return;
+		return 0;
 
 	err = WSAStartup(MAKEWORD(2, 2), &wsa);
 	if(err)
