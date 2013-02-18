@@ -1,7 +1,9 @@
 AC_INIT([net], [0.01], [it.jarlsby@stud.uis.no])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
+
 AC_PROG_CC
-m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
+AM_PROG_CC_C_O
+AC_PROG_LIBTOOL
 
 AC_CHECK_HEADER([windows.h], [
 	AC_DEFINE([WIN32], [1], [We are compiling for Windows.])
@@ -10,9 +12,7 @@ AC_CHECK_HEADER([windows.h], [
 ])
 AM_CONDITIONAL([WIN32], [test x$windows = xyes])
 
-AM_PROG_CC_C_O
-
-AC_PROG_RANLIB
+AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_FILES([
 	Makefile

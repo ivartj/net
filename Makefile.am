@@ -1,14 +1,15 @@
 SUBDIRS = tests
+ACLOCAL_AMFLAGS = -I m4
 
 ivartjlibdir = $(libdir)/ivartj
 ivartjincludedir = $(includedir)/ivartj
-ivartjlib_LIBRARIES = libnet.a
+ivartjlib_LTLIBRARIES = libnet.la
 ivartjinclude_HEADERS = net.h
 
-libnet_a_SOURCES = net.h net.c
+libnet_la_SOURCES = net.h net.c
 
 if WIN32
-libnet_a_SOURCES += win32.c
+libnet_la_SOURCES += win32.c
 endif
 
 pkgconfigdir = $(libdir)/pkgconfig
